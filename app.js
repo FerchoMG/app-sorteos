@@ -15,7 +15,7 @@ const forcedSelect = $("#forced-name");
 const modeSelect = $("#forced-mode");
 const settingsMessage = $("#settings-message");
 
-const colors = ["#c4f36a", "#f7a5a2", "#e8d9f7", "#fbdc78", "#a6dfda", "#f5b685", "#c4d5ff", "#e5edac"];
+const colors = ["#8ab4f8", "#f28b82", "#fdd663", "#81c995", "#c58af9", "#78d9ec", "#f6c4a2", "#aecbfa"];
 const fallback = { names: [], forcedName: "", forcedMode: "next" };
 let state = loadState();
 let rotation = 0;
@@ -68,7 +68,7 @@ function drawWheel() {
     ctx.closePath();
     ctx.fillStyle = colors[index % colors.length];
     ctx.fill();
-    ctx.strokeStyle = "#42314d";
+    ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 3;
     ctx.stroke();
 
@@ -77,7 +77,7 @@ function drawWheel() {
     ctx.rotate(centerAngle);
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "#34243f";
+    ctx.fillStyle = "#202124";
     fitLabel(name, radius, slice);
     ctx.translate(radius * 0.62, 0);
     if (centerAngle > Math.PI / 2 && centerAngle < Math.PI * 1.5) ctx.rotate(Math.PI);
@@ -88,7 +88,7 @@ function drawWheel() {
 
   ctx.beginPath();
   ctx.arc(center, center, radius, 0, Math.PI * 2);
-  ctx.strokeStyle = "#42314d";
+  ctx.strokeStyle = "#dadce0";
   ctx.lineWidth = 11;
   ctx.stroke();
 }
@@ -113,7 +113,8 @@ function renderNames() {
       state.names.splice(index, 1);
       state.forcedName = validForcedName(state.names, state.forcedName);
       saveState();
-      result.textContent = "La suerte está esperando tu giro.";
+      result.classList.remove("result-winner");
+      result.textContent = state.names.length >= 2 ? "Gira la ruleta para iniciar el sorteo." : "Agrega nombres para comenzar.";
       render();
     });
     item.append(dot, label, remove);
@@ -138,6 +139,9 @@ $("#name-form").addEventListener("submit", (event) => {
   if (next.error) return;
   state.names = next.names;
   input.value = "";
+  if (state.names.length === 2 && !result.classList.contains("result-winner")) {
+    result.textContent = "Gira la ruleta para iniciar el sorteo.";
+  }
   saveState();
   render();
   input.focus();
@@ -160,7 +164,7 @@ spinButton.addEventListener("click", () => {
     spinning = false;
     result.innerHTML = "";
     const prefix = document.createElement("span");
-    prefix.textContent = "¡LA PERSONA ELEGIDA ES!";
+    prefix.textContent = "Persona elegida";
     const winnerText = document.createElement("strong");
     winnerText.textContent = winner;
     result.append(prefix, winnerText);
