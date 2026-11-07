@@ -3,29 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f6f3e9" />
-    <meta name="description" content="Una ruleta sencilla para sortear nombres." />
-    <title>La Ruleta · Sorteo de nombres</title>
+    <meta name="theme-color" content="#f8fafc" />
+    <meta name="description" content="App Sorteos: ruleta de nombres para elegir a una persona." />
+    <title>App Sorteos | Ruleta de nombres</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page-shell">
       <header class="topbar">
-        <div class="brand" id="brand" title="La Ruleta">
-          <span class="brand-mark" aria-hidden="true">✳</span>
-          <span>la ruleta<span class="brand-dot">.</span></span>
-        </div>
-        <span class="topbar-note">SORTEOS CON UNA VUELTA DE EMOCIÓN</span>
+        <div class="brand" id="brand" title="App Sorteos">App Sorteos</div>
       </header>
 
       <main class="layout">
         <section class="intro" aria-labelledby="main-title">
-          <div class="eyebrow"><span class="eyebrow-line"></span> QUE DECIDA LA SUERTE</div>
-          <h1 id="main-title">¿A quién<br />le <em>toca?</em></h1>
-          <p class="intro-copy">Agrega los nombres, dale una vuelta y descubre quién es la persona elegida.</p>
+          <h1 id="main-title">Sorteo de nombres</h1>
+          <p class="intro-copy">Agrega participantes y gira la ruleta para elegir a una persona.</p>
 
           <form id="name-form" class="name-form" autocomplete="off">
-            <label for="name-input">PARTICIPANTES</label>
+            <label for="name-input">Agregar participante</label>
             <div class="name-input-row">
               <input id="name-input" name="name" type="text" maxlength="30" placeholder="Escribe un nombre" aria-describedby="name-help" />
               <button type="submit" class="add-button" aria-label="Agregar participante">+</button>
@@ -33,32 +28,30 @@
             <p id="name-help" class="helper">Agrega al menos 2 nombres para comenzar.</p>
           </form>
 
-          <div class="list-heading"><span>EN LA RULETA</span><span id="participant-count">0 PERSONAS</span></div>
+          <div class="list-heading"><span>Participantes</span><span id="participant-count">0 PERSONAS</span></div>
           <ul id="name-list" class="name-list" aria-label="Participantes"></ul>
           <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
         </section>
 
         <section class="wheel-area" aria-label="Ruleta del sorteo">
-          <div class="wheel-topline"><span>01 / LA RULETA</span><span>BUENA SUERTE ↗</span></div>
+          <h2 class="wheel-title">Ruleta</h2>
           <div class="wheel-stage">
             <div class="wheel-pointer" aria-hidden="true"></div>
             <div id="wheel-rotor" class="wheel-rotor">
               <canvas id="wheel" width="800" height="800" role="img" aria-label="Ruleta con los participantes"></canvas>
             </div>
-            <div class="wheel-hub" aria-hidden="true"><span>✳</span></div>
+            <div class="wheel-hub" aria-hidden="true"></div>
           </div>
-          <button id="spin-button" class="spin-button" type="button">GIRAR LA RULETA <span aria-hidden="true">↗</span></button>
-          <div id="result" class="result" role="status" aria-live="polite">La suerte está esperando tu giro.</div>
-          <div class="wheel-bottomline"><span>UN GIRO. UNA PERSONA.</span><span>✳</span></div>
+          <button id="spin-button" class="spin-button" type="button">Girar ruleta</button>
+          <div id="result" class="result" role="status" aria-live="polite">Agrega nombres para comenzar.</div>
         </section>
       </main>
 
-      <footer class="footer"><span>HECHO PARA COMPARTIR MOMENTOS</span><span>✳ &nbsp; LA RULETA</span></footer>
     </div>
 
     <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title">
       <form id="settings-form" method="dialog">
-        <div class="dialog-head"><span class="dialog-kicker">CONFIGURACIÓN</span><button id="close-settings" class="close-button" type="button" aria-label="Cerrar">×</button></div>
+        <div class="dialog-head"><span class="dialog-kicker">Configuración</span><button id="close-settings" class="close-button" type="button" aria-label="Cerrar">×</button></div>
         <h2 id="settings-title">Resultado configurado</h2>
         <p>Elige quién saldrá en la ruleta. Esta opción queda guardada solo en este navegador.</p>
         <label for="forced-name">Persona elegida</label>
